@@ -33,12 +33,12 @@ jobs:
         if: ${{ !cancelled() }}
         with:
           name: test-results
-          path: build/test-result
+          path: build/test-results
 
       - name: Create test report
         uses: dorny/test-reporter@v2
         if: ${{ !cancelled() }}
         with:
           name: Junit Tests
-          path: build/test-result/*.xml
+          path: build/test-results/*.xml
           reporter: java-junit
