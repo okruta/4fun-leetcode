@@ -47,5 +47,5 @@ jobs:
         if: ${{ !cancelled() }}
         with:
           name: Junit Tests
-          path: build/test-results/**.xml
+          path: build/test-results/**/*.xml
           reporter: java-junit
