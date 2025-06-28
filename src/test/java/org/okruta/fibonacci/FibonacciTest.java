@@ -14,6 +14,8 @@ class FibonacciTest {
 
     private static Stream<Arguments> fibonacciArgs() {
         return Stream.of(
+                Arguments.of(0, 1), // test
+                Arguments.of(0, 1), // test
                 Arguments.of(0, 0),
                 Arguments.of(0, 1),
                 Arguments.of(1, 1),
