@@ -13,7 +13,7 @@ jobs:
     permissions:
       contents: read
       actions: read
-      checks: read
+      checks: write
 
     steps:
       - name: Checkout Code
@@ -39,3 +39,12 @@ jobs:
           path: |
             build/test-results
             build/reports
+
+      - name: Create test report
+        uses: dorny/test-reporter@v2
+        if: ${{ !cancelled() }}
+        with:
+          name: Junit Tests
+          path: build/test-results/**/*.xml
+          reporter: java-junit
+
