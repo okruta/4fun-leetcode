@@ -29,7 +29,7 @@ class FibonacciTest {
         );
     }
 
-    @ParameterizedTest(name = "For n = {0}, fibonacci value is = {1}")
+    @ParameterizedTest(name = "Solution1 for n = {0}, fibonacci value is = {1}")
     @MethodSource("fibonacciArgs")
     public void shouldReturnForFibForSolution1(int input, int expected) {
         // When
@@ -40,7 +40,7 @@ class FibonacciTest {
                 .isEqualTo(expected);
     }
 
-    @ParameterizedTest(name = "For n = {0}, fibonacci value is = {1}")
+    @ParameterizedTest(name = "Solution2 for n = {0}, fibonacci value is = {1}")
     @MethodSource("fibonacciArgs")
     public void shouldReturnForFibForSolution2(int input, int expected) {
         // When
