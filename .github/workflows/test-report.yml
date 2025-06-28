@@ -1,0 +1,26 @@
+name: Test report
+
+on:
+  workflow_run:
+    workflows: ['Java CI with Gradle']
+    types:
+      - completed
+
+jobs:
+  test-report:
+    name: Test report
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
+      checks: write
+
+    steps:
+      - name: Create test report
+        uses: dorny/test-reporter@v2
+        if: ${{ !cancelled() }}
+        with:
+          name: Junit Tests
+          artifact: test-results
+          path: test-results/**/*.xml
+          reporter: java-junit
