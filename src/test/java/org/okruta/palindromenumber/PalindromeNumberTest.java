@@ -1,4 +1,4 @@
-package org.okruta.twosums;
+package org.okruta.palindromenumber;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -8,26 +8,28 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class TowSumsTest {
+class PalindromeNumberTest {
     private final Solution solution = new Solution();
 
     private static Stream<Arguments> testArgs() {
         return Stream.of(
-                Arguments.of(new int[]{2, 7, 11, 15}, 9, new int[]{0, 1}),
-                Arguments.of(new int[]{3, 2, 4}, 6, new int[]{1, 2}),
-                Arguments.of(new int[]{3, 3}, 6, new int[]{0, 1})
+                Arguments.of(121, true),
+                Arguments.of(1221, true),
+                Arguments.of(12321, true),
+                Arguments.of(-121, false),
+                Arguments.of(-1221, false),
+                Arguments.of(10, false)
         );
     }
 
-    @ParameterizedTest(name = "Solution for input = {0} and target = {1} is {2} ")
+    @ParameterizedTest(name = "Solution for input = {0} is {1} ")
     @MethodSource("testArgs")
-    public void shouldReturnTwoSumsForSolution(int[] input, int target, int[] expected) {
+    public void shouldReturnPalindromeNumberForSolution(int input, boolean expected) {
         // When
-        int[] result = solution.twoSum(input, target);
+        boolean result = solution.isPalindrome(input);
 
         // Then
         assertThat(result)
                 .isEqualTo(expected);
     }
-
 }
