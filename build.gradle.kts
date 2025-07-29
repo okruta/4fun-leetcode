@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    id("me.champeau.jmh") version "0.7.3"
 }
 
 group = "org.okruta"
@@ -17,6 +18,10 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
+tasks.wrapper {
+    version = 8.14
+}
+
 java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(24))
@@ -29,4 +34,13 @@ tasks.test {
     testLogging {
         events("passed", "skipped", "failed")
     }
+}
+
+jmh {
+    warmupIterations = 2
+    iterations = 2
+    fork = 2
+    resultFormat = "TEXT" // CSV, JSON, NONE, SCSV, TEXT
+    resultsFile = layout.buildDirectory.file("reports/jmh/results.txt")
+//    humanOutputFile = layout.buildDirectory.file("reports/jmh/human.txt") // stdout
 }
