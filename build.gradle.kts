@@ -37,10 +37,16 @@ tasks.test {
 }
 
 jmh {
-    warmupIterations = 2
-    iterations = 2
-    fork = 2
+    (findProperty("jmhIncludes") as? String).let { jmhIncludes ->
+        includes = listOf(jmhIncludes)
+    }
+
+    warmupIterations = 3 // min 10-20 ...
+    iterations = 2 // ~10
+    fork = 1
     resultFormat = "TEXT" // CSV, JSON, NONE, SCSV, TEXT
     resultsFile = layout.buildDirectory.file("reports/jmh/results.txt")
+    benchmarkMode = listOf("Throughput") // Throughput/thrpt, AverageTime/avgt, SampleTime/sample, SingleShotTime/ss, All/all
+//    timeUnit = "us" // m, s, ms, us, ns
 //    humanOutputFile = layout.buildDirectory.file("reports/jmh/human.txt") // stdout
 }

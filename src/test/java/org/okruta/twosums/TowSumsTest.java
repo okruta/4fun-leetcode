@@ -21,7 +21,7 @@ class TowSumsTest {
 
     @ParameterizedTest(name = "Solution for input = {0} and target = {1} is {2} ")
     @MethodSource("testArgs")
-    public void shouldReturnTwoSumsSolution(int[] input, int target, int[] expected) {
+    public void shouldReturnTwoSumsForSolution(int[] input, int target, int[] expected) {
         // When
         int[] result = solution.twoSum(input, target);
 
