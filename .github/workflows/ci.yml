@@ -32,7 +32,7 @@ jobs:
         run: ./gradlew test
 
       - name: Upload tests as artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         if: ${{ !cancelled() }}
         with:
           name: test-results
